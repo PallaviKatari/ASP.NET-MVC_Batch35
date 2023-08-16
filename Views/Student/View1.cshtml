@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "View1";
+}
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<h2>View1</h2>
+<script>
+    $(document).ready(function () {
+        $("button").click(function () {
+            $.getScript("/Student/View6");
+        });
+    });
+</script>
+<button class="btn-dark">Return JavaScript Result</button>
