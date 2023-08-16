@@ -19,13 +19,38 @@ namespace MVC_Batch35.Controllers
     public class StudentController : Controller
     {
         /// <summary>
+        /// Passing data to Student Model
+        /// </summary>
+        static IList<Student> studentList = new List<Student>{
+                new Student() { StudentId = 1, StudentName = "Harita", Age = 18 } ,
+                new Student() { StudentId = 2, StudentName = "Arun",  Age = 21 } ,
+                new Student() { StudentId = 3, StudentName = "Yamini",  Age = 25 } ,
+                new Student() { StudentId = 4, StudentName = "Vignesh" , Age = 20 } ,
+                new Student() { StudentId = 5, StudentName = "Siva" , Age = 31 } ,
+                new Student() { StudentId = 4, StudentName = "Srikanth" , Age = 17 } ,
+                new Student() { StudentId = 4, StudentName = "Hemanth" , Age = 19 },
+                new Student() { StudentId = 4, StudentName = "Darshan" , Age = 19 },
+                new Student() { StudentId = 4, StudentName = "Sharon" , Age = 19 },
+                new Student() { StudentId = 4, StudentName = "Harishmitha" , Age = 19 },
+                new Student() { StudentId = 4, StudentName = "Karthikeyan" , Age = 19 },
+                new Student() { StudentId = 4, StudentName = "Harshan" , Age = 19 }
+            };
+
+        /// <summary>
         /// returns a string
         /// </summary>
         /// <returns></returns>
-        [ActionName("Student")] //Perform the below action using Student
-        public string Index()
+        //[ActionName("Student")] //Perform the below action using Student
+        //public string Index()
+        //{
+        //    return "I am a Student Controller";
+        //}
+
+        // GET: Student
+        public ActionResult Index()
         {
-            return "I am a Student Controller";
+            //fetch students from the DB using Entity Framework here
+            return View(studentList); // returning a Model
         }
 
         /// <summary>
