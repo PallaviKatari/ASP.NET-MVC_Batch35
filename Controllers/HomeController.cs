@@ -33,7 +33,7 @@ namespace MVC_Batch35.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Your in contact page.";
             List<string> traineeList = new List<string>();
             traineeList.Add("John");
             traineeList.Add("Peter");

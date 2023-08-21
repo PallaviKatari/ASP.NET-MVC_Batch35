@@ -11,20 +11,30 @@ namespace MVC_Batch35
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            //Enabling attribute routing 
+            routes.MapMvcAttributeRoutes();
+
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
             routes.MapRoute(
-                name: "Default",
-                //https://localhost:44398/Home/About
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                name: "Default", //Route Name
+                url: "{controller}/{action}/{id}", //Route Pattern
+                defaults: new
+                {
+                    controller = "Home", //Controller Name
+                    action = "Index", //Action method Name
+                    id = UrlParameter.Optional //Defaut value for above defined parameter
+                }
+                //constraints: new { id = @"\d+" } //Restriction for id
             );
 
-            routes.MapRoute(
-                name: "Student",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Student", action = "Index", id = UrlParameter.Optional }
-            );
+            //routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            //routes.MapRoute(
+            //     "Default", // Route name
+            //     "{controller}/{action}/{id}", // Route Pattern
+            //     new { controller = "Student", action = "Index", id = UrlParameter.Optional }, // Default values for parameters
+            //     new { controller = "^S.*", action = "^Index$" } ,
+            //     constraints: new { id = @"\d+" } //Restriction for controller and action
+            //);
 
         }
     }

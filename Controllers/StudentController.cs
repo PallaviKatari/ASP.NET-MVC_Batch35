@@ -48,7 +48,8 @@ namespace MVC_Batch35.Controllers
 
         // GET: Student
         //[ActionName("StudentDetails")]
-        [NonAction]
+        //NonAction]
+        //[Route("Student/{id}/details")] //Enable attribute routing in RouteConfig.cs
         public ActionResult Index(int? id)
         {
             if (id == 1)
