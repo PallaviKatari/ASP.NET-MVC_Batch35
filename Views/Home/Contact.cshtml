@@ -5,6 +5,34 @@
     <h2 id="title">@ViewBag.Title.</h2>
     <h3>@ViewBag.Message</h3>
 
+    @*Loosely-Typed View - ViewData, ViewBag, TempData*@
+
+    @*@{
+            foreach (var details in ViewData["traineeList"] as List<string>)
+            {
+                <ul>
+                    <li>@details</li>
+                </ul>
+
+            }
+        }*@
+    @{
+        foreach (var details in ViewBag.traineeList as List<string>)
+        {
+            <ul>
+                <li>@details</li>
+            </ul>
+
+        }
+    }
+
+    @{
+        string data = TempData["Name"].ToString();
+    }
+    <p>TempData: @data</p>
+
+    
+
     <address>
         One Microsoft Way<br />
         Redmond, WA 98052-6399<br />

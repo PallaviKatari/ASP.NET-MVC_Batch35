@@ -1,9 +1,17 @@
-﻿@{
+﻿@model MVC_Batch35.Models.Trainer
+
+@{
     ViewBag.Title = "About";
 }
 <main aria-labelledby="title">
     <h2 id="title">@ViewBag.Title.</h2>
     <h3>@ViewBag.Message</h3>
-
     <p>Use this area to provide additional information.</p>
 </main>
+
+<ul>
+    <li>@Model.Id</li>
+    <li>@Model.Name</li>
+    <li>@Model.Skill</li>
+    <li>@Model.Contact</li>
+</ul>

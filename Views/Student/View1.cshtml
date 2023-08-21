@@ -1,14 +1,55 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "View1";
 }
+<p>I am View1</p>
 <script src="~/Scripts/jquery-3.4.1.js"></script>
 <h2>View1</h2>
 <script>
     $(document).ready(function () {
-        $("button").click(function () {
+        $("#demo1").click(function () {
             $.getScript("/Student/View6");
         });
     });
 </script>
-<button class="btn-dark">Return JavaScript Result</button>
+<button id="demo1" class="btn-dark">Return JavaScript Result</button>
+<hr />
+<center>
+    <h2 style="color:blue" align="center"> Calculate Age from Date of Birth <br> <br> </h2>
+
+    <!-- Choose a date and enter in input field -->
+    <b> Enter Date of Birth: <input type=date id=DOB> </b>
+    <span id="message" style="color:red"> </span> <br><br>
+
+    <!-- Choose a date and enter in input field -->
+    <h3 style="color:darkgrey" id="result" align="center">HELLO</h3>
+</center>
+<script>
+    $(document).ready(function () {
+        $("#demo2").click(function () {
+            var userinput = document.getElementById("DOB").value;
+            var dob = new Date(userinput);
+            if (userinput == null || userinput == '') {
+                document.getElementById("message").innerHTML = "Choose a date!";
+                return false;
+            } else {
+                var month_diff = Date.now() - dob.getTime();
+                var age_dt = new Date(month_diff);
+                var year = age_dt.getUTCFullYear();
+                var age = Math.abs(year - 1970);
+                return document.getElementById("result").innerHTML =
+                    "Age is: " + age + " years. ";
+            }
+        });
+    });
+</script>
+<button id="demo2" class="btn-dark">Age Calculator - jQuery</button>
+<script>
+    $(document).ready(function () {
+        $("#demo3").click(function () {
+            $.getScript("/Student/View18");
+        });
+    });
+</script>
+<button id="demo3" class="btn-dark">Age Calculator JSResult</button>
+
+

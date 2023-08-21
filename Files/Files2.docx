@@ -1,0 +1,249 @@
+﻿INTRODUCTION TO ASP.NET MVC
+ASP-ACTIVE SERVER PAGES
+
+ASP.NET MVC Architecture
+The MVC architectural pattern has existed for a long time in software engineering. All most all the languages use MVC with slight variation, but conceptually it remains the same.
+Let's understand the MVC architecture supported in ASP.NET.
+MVC stands for Model, View, and Controller. MVC separates an application into three components - Model, View, and Controller.
+Model: Model represents the shape of the data. A class(properties) in C# is used to describe a model. Model objects store data retrieved from the database.
+Model represents the data.
+View: View in MVC is a user interface. View display model data to the user and enables them to modify them. View in ASP.NET MVC is HTML, CSS, and some special syntax (Razor syntax) that makes it easy to communicate with the model and the controller.
+View is the User Interface.
+Controller: The controller handles the user request. Typically, the user uses the view and raises an HTTP request, which will be handled by the controller. The controller processes the request and returns the appropriate view as a response.
+Controller is the request handler.
+The following figure illustrates the interaction between Model, View, and Controller.
+   
+ MVC Architecture
+
+
+
+
+
+The following figure illustrates the flow of the user's request in ASP.NET MVC.
+ 
+ Request Flow in MVC Architecture
+As per the above figure, when a user enters a URL in the browser, it goes to the webserver and routed to a controller. A controller executes related view and models for that request and create the response and sends it back to the browser.
+ASP.NET MVC Version History
+ASP.NET is a free web framework for building websites and web applications on .NET Framework using HTML, CSS, and JavaScript. ASP.NET MVC 5 is a web framework based on Model-View-Controller (MVC) architecture.
+Microsoft had introduced ASP.NET MVC in .NET 3.5, since then lots of new features have been added.
+Microsoft made ASP.NET MVC framework open source in April 2009. The source code was released under the Microsoft Public License (MS-PL)
+ASP.NET MVC framework can be installed as NuGet package.
+In Visual Studio, the latest version of ASP.NET MVC version will be automatically added as a NuGet package when you create a new ASP.NET MVC project. 
+
+Create ASP.NET MVC Application
+In this section, we will create a new MVC web application using Visual Studio and understand the basic building blocks of the ASP.NET MVC Application.
+We are going to use ASP.NET MVC v5.2, and Visual Studio 2022 community edition, and .NET Framework 4.8 to create our first MVC application.
+Open Visual Studio 2022 and select File menu -> New -> Project, as shown below.
+ 
+From the New Project dialog as shown below, expand Visual C# node and select Web in the left pane, and then select ASP.NET Web Application (.NET Framework) in the middle pane. Enter the name of your project MVC_Demo. (You can give an appropriate name for your application). Also, you can change the location of the MVC application by clicking on Browse button. Finally, click OK.
+From the New ASP.NET Web Application dialog, select MVC (if not selected already) as shown below.
+ 
+You can also change the authentication by clicking on Change Authentication button. You can select appropriate authentication mode for your application, as shown below.
+Here, we are keeping the default authentication for our application which is No Authentication. Click OK to continue.
+Wait for some time till Visual Studio creates a simple MVC project using the default template, as shown below.
+ 
+Now, press F5 to run the project in debug mode or Ctrl + F5 to run the project without debugging. It will open the home page in the browser, as shown below.
+ 
+
+ASP.NET MVC Folder Structure
+Here, you will learn about the ASP.NET MVC project structure. Visual Studio creates the following folder structure of the ASP.NET MVC application by default.
+ 
+Let's see significance of each folder.
+App_Data
+The App_Data folder can contain application data files like LocalDB, .mdf files, XML files, and other data related files. IIS will never serve files from App_Data folder.
+App_Start
+The App_Start folder can contain class files that will be executed when the application starts. Typically, these would be config files like AuthConfig.cs, BundleConfig.cs, FilterConfig.cs, RouteConfig.cs etc. MVC 5 includes BundleConfig.cs, FilterConfig.cs and RouteConfig.cs by default. We will see the significance of these files later.
+ 
+Content
+The Content folder contains static files like CSS files, images, and icons files. MVC 5 application includes bootstrap.css, bootstrap.min.css, and Site.css by default.
+ 
+Controllers
+The Controllers folder contains class files for the controllers. A Controller handles users' request and returns a response. MVC requires the name of all controller files to end with "Controller". You will learn about the controller in the next section.
+ 
+Models
+The Models folder contains model class files. Typically, model class includes public properties, which will be used by the application to hold and manipulate application data.
+Scripts
+The Scripts folder contains JavaScript or VBScript files for the application. MVC 5 includes javascript files for bootstrap, jquery 1.10, and modernizer by default.
+ 
+Views
+The Views folder contains HTML files for the application. Typically view file is a .cshtml file where you write HTML and C# or VB.NET code.
+The Views folder includes a separate folder for each controller. For example, all the .cshtml files, which will be rendered by HomeController will be in View > Home folder.
+The Shared folder under the View folder contains all the views shared among different controllers e.g., layout files.
+ 
+Additionally, MVC project also includes the following configuration files:
+Global.asax
+Global.asax file allows you to write code that runs in response to application-level events, such as Application_BeginRequest, application_start, application_error, session_start, session_end, etc.
+Packages.config
+Packages.config file is managed by NuGet to track what packages and versions you have installed in the application.
+Web.config
+Web.config file contains application-level configurations.
+
+Routing in MVC
+In the ASP.NET Web Forms application, every URL must match with a specific .aspx file. For example, a URL http://domain/studentsinfo.aspx must match with the file studentsinfo.aspx that contains code and markup for rendering a response to the browser.
+Routing is not specific to the MVC framework. It can be used with ASP.NET Webform application or MVC application.
+ASP.NET introduced Routing to eliminate the needs of mapping each URL with a physical file. Routing enables us to define a URL pattern that maps to the request handler. This request handler can be a file or class. In ASP.NET Webform application, request handler is .aspx file, and in MVC, it is the Controller class and Action method. For example, http://domain/students can be mapped to http://domain/studentsinfo.aspx in ASP.NET Webforms, and the same URL can be mapped to Student Controller and Index action method in MVC.
+Route
+Route defines the URL pattern and handler information. All the configured routes of an application stored in RouteTable and will be used by the Routing engine to determine appropriate handler class or file for an incoming request.
+The following figure illustrates the Routing process.
+ 
+Configure a Route
+Every MVC application must configure (register) at least one route configured by the MVC framework by default. You can register a route in RouteConfig class, which is in RouteConfig.cs under App_Start folder. The following figure illustrates how to configure a route in the RouteConfig class .
+ 
+As you can see in the above figure, the route is configured using the MapRoute() extension method of RouteCollection, where name is "Default", url pattern is "{controller}/{action}/{id}" and defaults parameter for controller, action method and id parameter. Defaults specify which controller, action method, or value of id parameter should be used if they do not exist in the incoming request URL.
+In the same way, you can configure other routes using the MapRoute() method of the RouteCollection class. This RouteCollection is actually a property of the RouteTable class.
+URL Pattern
+The URL pattern is considered only after the domain name part in the URL. For example, the URL pattern "{controller}/{action}/{id}" would look like localhost:1234/{controller}/{action}/{id}. Anything after "localhost:1234/" would be considered as a controller name. The same way, anything after the controller name would be considered as action name and then the value of id parameter.
+ 
+
+http://localhost:44362/Home/About
+	Home – Controller
+	About – Action Method
+
+If the URL doesn't contain anything after the domain name, then the default controller and action method will handle the request. For example, http://localhost:1234 would be handled by the HomeController and the Index() method as configured in the default parameter.
+The following table shows which Controller, Action method, and Id parameter would handle different URLs considering the above default route.
+Multiple Routes
+You can also configure a custom route using the MapRoute extension method. You need to provide at least two parameters in MapRoute, route name, and URL pattern. The Defaults parameter is optional.
+You can register multiple custom routes with different names. Consider the following example where we register "Student" route.
+ 
+Route Constraints
+You can also apply restrictions on the value of the parameter by configuring route constraints. For example, the following route applies a limitation on the id parameter that the id's value must be numeric.
+ 
+So if you give non-numeric value for id parameter, then that request will be handled by another route or, if there are no matching routes, then "The resource could not be found" error will be thrown.
+Register Routes
+Now, after configuring all the routes in the RouteConfig class, you need to register it in the Application_Start() event in the Global.asax so that it includes all your routes into the RouteTable.
+ 
+The following figure illustrate Route registration process. 
+Thus, routing play’s important role in MVC framework.
+
+
+
+
+
+
+Controllers in ASP.NET MVC
+The Controller in MVC architecture handles any incoming URL request. The Controller is a class, derived from the base class System.Web.Mvc.Controller. Controller class contains public methods called Action methods. Controller and its action method handles incoming browser requests, retrieves necessary model data and returns appropriate responses.
+In ASP.NET MVC, every controller class name must end with a word "Controller". For example, the home page controller name must be HomeController, and for the student page, it must be the StudentController. Also, every controller class must be located in the Controller folder of the MVC folder structure.
+Adding a New Controller
+Now, let's add a new empty controller in our MVC application in Visual Studio.
+MVC will throw "The resource cannot be found" error when you do not append "Controller" to the controller class name.
+In the previous section, we learned how to create our first MVC application, which created a default HomeController. Here, we will create new StudentController class.
+In the Visual Studio, right click on the Controller folder -> select Add -> click on Controller..
+ 
+ 
+Action method
+All the public methods of the Controller class are called Action methods. They are like any other normal methods with the following restrictions:
+1.	Action method must be public. It cannot be private or protected
+2.	Action method cannot be overloaded
+3.	Action method cannot be a static method.
+Default Action Method
+Every controller can have a default action method as per the configured route in the RouteConfig class. By default, the Index() method is a default action method for any controller.
+However, you can change the default action name as per your requirement in the RouteConfig class.
+ActionResult
+MVC framework includes various Result classes, which can be returned from an action method. The result classes represent different types of responses, such as HTML, file, string, JSON, JavaScript, etc. The following table lists all the result classes available in ASP.NET MVC.
+
+Result Class	Description
+ViewResult	Represents HTML and markup.
+EmptyResult	Represents No response.
+ContentResult	Represents string literal.
+FileContentResult/ FilePathResult/ FileStreamResult	Represents the content of a file.
+JavaScriptResult	Represent a JavaScript script.
+JsonResult	Represent JSON that can be used in AJAX.
+RedirectResult	Represents a redirection to a new URL.
+RedirectToRouteResult	Represent another action of same or other controller.
+PartialViewResult	Returns HTML from Partial view.
+HttpUnauthorizedResult	Returns HTTP 403 status.
+The ActionResult class is a base class of all the above result classes, so it can be the return type of action method that returns any result listed above. However, you can specify the appropriate result class as a return type of action method.
+The Index() method of the StudentController in the above figure uses the View() method to return a ViewResult (which is derived from the ActionResult class). The base Controller class includes the View() method along with other methods that return a particular type of result, as shown in the below table.
+Result Class	Description	Base Controller Method
+ViewResult	Represents HTML and markup.	View()
+EmptyResult	Represents No response.	
+ContentResult	Represents string literal.	Content()
+FileContentResult,
+FilePathResult,
+FileStreamResult	Represents the content of a file.	File()
+JavaScriptResult	Represents a JavaScript script.	JavaScript()
+JsonResult	Represents JSON that can be used in AJAX.	Json()
+RedirectResult	Represents a redirection to a new URL.	Redirect()
+RedirectToRouteResult	Represents redirection to another route.	RedirectToRoute()
+PartialViewResult	Represents the partial view result.	PartialView()
+HttpUnauthorizedResult	Represents HTTP 403 response.	
+
+
+As you can see in the above table, the View() method returns the ViewResult, the Content() method returns a string, the File() method returns the content of a file, and so on. Use different methods mentioned in the above table to return a different type of result from an action method.
+Action Method Parameters
+Every action methods can have input parameters as normal methods. It can be primitive data type or complex type parameters.
+Please note that action method paramter can be Nullable Type.
+By default, the values for action method parameters are retrieved from the request's data collection. The data collection includes name/values pairs for form data or query string values or cookie values. Model binding in ASP.NET MVC automatically maps the URL query string or form data collection to the action method parameters if both names match. 
+Action Selectors
+Action selector is the attribute that can be applied to the action methods. It helps the routing engine to select the correct action method to handle a particular request. MVC 5 includes the following action selector attributes:
+1.	ActionName
+2.	NonAction
+3.	ActionVerbs
+ActionName
+The ActionName attribute allows us to specify a different action name than the method name, as shown below.
+ 
+NonAction
+Use the NonAction attribute when you want public method in a controller but do not want to treat it as an action method.
+ 
+
+
+
+
+ActionVerbs: HttpGet, HttpPost, HttpPut
+The ActionVerbs selector is to handle different type of Http requests. The MVC framework includes HttpGet, HttpPost, HttpPut, HttpDelete, HttpOptions, and HttpPatch action verbs. You can apply one or more action verbs to an action method to handle different HTTP requests. If you don't apply any action verbs to an action method, then it will handle HttpGet request by default.
+The following table lists the usage of HTTP methods:
+Http method	Usage
+GET	To retrieve the information from the server. Parameters will be appended in the query string.
+POST	To create a new resource.
+PUT	To update an existing resource.
+HEAD	Identical to GET except that server do not return the message body.
+OPTIONS	It represents a request for information about the communication options supported by the web server.
+DELETE	To delete an existing resource.
+PATCH	To full or partial update, the resource.
+
+Model in ASP.NET MVC
+The model classes represents domain-specific data and business logic in the MVC application. It represents the shape of the data as public properties and business logic as methods.
+In the ASP.NET MVC Application, all the Model classes must be created in the Model folder.
+Adding a Model Class
+Let's create the model class that should have the required properties for the Student entity.
+In the MVC application in Visual Studio, and right-click on the Model folder, select Add -> and click on Class... It will open the Add New Item dialog box.
+In the Add New Item dialog box, enter the class name Student and click Add.
+ 
+The model class can be used in the view to populate the data, as well as sending data to the controller.
+Create a View in ASP.NET MVC
+A view is used to display data using the model class object. The Views folder contains all the view files in the ASP.NET MVC application.
+A controller can have one or more action methods, and each action method can return a different view. In short, a controller can render one or more views. So, for easy maintenance, the MVC framework requires a separate sub-folder for each controller with the same name as a controller, under the Views folder.
+For example, all the views rendered from the HomeController will resides in the Views > Home folder. In the same way, views for StudentController will resides in Views > Student folder.
+The Shared folder contains views, layout views, and partial views, which will be shared among multiple controllers.
+Razor View Engine
+Microsoft introduced the razor view engine to compile a view with a mix of HTML tags and server-side code. The special syntax for razor view maximizes the speed of writing code by minimizing the number of characters and keystrokes required when writing a view.
+The razor view uses @ character to include the server-side code instead of the traditional <% %> of ASP. You can use C# or Visual Basic syntax to write server-side code inside the razor view.
+ASP.NET MVC supports the following types of razor view files:
+File extension	Description
+.cshtml	C# Razor view. Supports C# code with html tags.
+.vbhtml	Visual Basic Razor view. Supports Visual Basic code with html tags.
+.aspx	ASP.Net web form
+.ascx	ASP.NET web control
+
+Creating a View
+You can create a view for an action method directly from it by right clicking inside an action method and select Add View...
+The following creates a view from the Index() action method of the StudentContoller, as shown below.
+ 
+ 
+ 
+Select the scaffolding template. Template dropdown will show default templates available for Create, Delete, Details, Edit, List, or Empty view. Select "List" template because we want to show the list of students in the view.
+Now, select Student from the model class dropdown. The model class dropdown automatically displays the name of all the classes in the Model folder. We have already created the Student model class, so it would be included in the dropdown.
+Check "Use a layout page" checkbox and select the default _Layout.cshtml page for this view and then click Add button.
+This will create the Index view under View -> Student folder, as shown below:
+ 
+As you can see in the above Index view, it contains both HTML and razor codes. Inline razor expression starts with @ symbol. @Html is a helper class to generate HTML controls. 
+Integrate Controller, View, and Model
+We have already created a Controller, a model and a view . Here, we will integrate them to run the application and see the result.
+The following code snippet shows the StudentController, the Student model, and the Index.cshtml view created.
+Now, to run it successfully, we need to pass a model object from an action method to a view. As you can see in the above Index.cshtml, it uses IEnumerable<Student> as a model type. So we need to pass it from the Index() action method of the StudentController class, as shown below.
+
+ 
+
+As you can see in the above code, we have created a list of student objects for an example purpose (in real-life application, you can fetch it from the database). We then pass this list object as a parameter in the View() method. The View() method is defined in the base Controller class, which automatically binds a model object to a view.
+Now, you can run the MVC project by pressing F5 and navigate to http://localhost/Student. You will see the following view in the browser.
+

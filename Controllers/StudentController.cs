@@ -22,18 +22,18 @@ namespace MVC_Batch35.Controllers
         /// Passing data to Student Model
         /// </summary>
         static IList<Student> studentList = new List<Student>{
-                new Student() { StudentId = 1, StudentName = "Harita", Age = 18 } ,
+                new Student() { StudentId = 1, StudentName = "Harita", Age = 20 } ,
                 new Student() { StudentId = 2, StudentName = "Arun",  Age = 21 } ,
-                new Student() { StudentId = 3, StudentName = "Yamini",  Age = 25 } ,
+                new Student() { StudentId = 3, StudentName = "Yamini",  Age = 20 } ,
                 new Student() { StudentId = 4, StudentName = "Vignesh" , Age = 20 } ,
-                new Student() { StudentId = 5, StudentName = "Siva" , Age = 31 } ,
-                new Student() { StudentId = 4, StudentName = "Srikanth" , Age = 17 } ,
-                new Student() { StudentId = 4, StudentName = "Hemanth" , Age = 19 },
-                new Student() { StudentId = 4, StudentName = "Darshan" , Age = 19 },
-                new Student() { StudentId = 4, StudentName = "Sharon" , Age = 19 },
-                new Student() { StudentId = 4, StudentName = "Harishmitha" , Age = 19 },
-                new Student() { StudentId = 4, StudentName = "Karthikeyan" , Age = 19 },
-                new Student() { StudentId = 4, StudentName = "Harshan" , Age = 19 }
+                new Student() { StudentId = 5, StudentName = "Siva" , Age = 22 } ,
+                new Student() { StudentId = 6, StudentName = "Srikanth" , Age = 17 } ,
+                new Student() { StudentId = 7, StudentName = "Hemanth" , Age = 19 },
+                new Student() { StudentId = 8, StudentName = "Darshan" , Age = 20 },
+                new Student() { StudentId = 9, StudentName = "Sharon" , Age = 19 },
+                new Student() { StudentId = 10, StudentName = "Harishmitha" , Age = 19 },
+                new Student() { StudentId = 11, StudentName = "Karthikeyan" , Age = 20 },
+                new Student() { StudentId = 12, StudentName = "Harshan" , Age = 19 }
             };
 
         /// <summary>
@@ -47,10 +47,23 @@ namespace MVC_Batch35.Controllers
         //}
 
         // GET: Student
-        public ActionResult Index()
+        //[ActionName("StudentDetails")]
+        [NonAction]
+        public ActionResult Index(int? id)
         {
-            //fetch students from the DB using Entity Framework here
-            return View(studentList); // returning a Model
+            if (id == 1)
+            {
+                //fetch students from the DB using Entity Framework here
+                return View(studentList); // returning a Model
+            }
+            else if (id == 2)
+            {
+                return RedirectToAction("Index", "Trainee");
+            }
+            else
+            {
+                return Content("I am an Index Action");
+            }
         }
 
         /// <summary>
@@ -58,11 +71,12 @@ namespace MVC_Batch35.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [NonAction] //Cannot perform the below action
-        public string Index1(int id)
+        //[NonAction] //Cannot perform the below action
+        public string Index1(int? id)
         //public string Index1(int? id)
         {
-            return "I am a Student Controller with ID: " + id;
+            return "I am a Student Controller: " + id;
+            // return "I am a Student Controller with ID: " + id;
         }
 
         /// <summary>
@@ -72,7 +86,9 @@ namespace MVC_Batch35.Controllers
         public ActionResult View1()
         {
             if (1000 > 100)
-                return View();    // returns ViewResult object
+                //return the view of action View1
+                return View();
+            //return Content("I am View1");    //  returns ViewResult object 
             else
                 return Json("Data", JsonRequestBehavior.AllowGet);  // returns JsonResult object
         }
@@ -87,7 +103,7 @@ namespace MVC_Batch35.Controllers
             if (!id.HasValue)
                 return RedirectToAction("View1");
 
-            return View();
+            return Content("I am in View 2");
         }
 
         /// <summary>
@@ -112,8 +128,8 @@ namespace MVC_Batch35.Controllers
         /// returns a jsonResult from Person Model
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
-        public ActionResult View5()
+        //[HttpGet]
+        public JsonResult View5()
         {
             var persons = new List<Person>
             {
@@ -129,7 +145,7 @@ namespace MVC_Batch35.Controllers
         /// returns a JavaScriptResult
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        //[HttpGet]
         public JavaScriptResult View6()
         {
             var msg = "alert('Are you sure want to Continue?');";
@@ -142,7 +158,7 @@ namespace MVC_Batch35.Controllers
         /// <returns></returns>
         public FileResult View7()
         {
-            return File(Url.Content("~/Files/Files.txt"), "text/plain");
+            return File(Url.Content("~/Files/Files2.docx"), "text/plain");
         }
 
         /// <summary>
@@ -223,7 +239,7 @@ namespace MVC_Batch35.Controllers
         /// <returns></returns>
         public PartialViewResult View16()
         {
-            return PartialView("_PartialView");
+            return PartialView("_Partial1_View");
         }
 
         /// <summary>
@@ -232,7 +248,7 @@ namespace MVC_Batch35.Controllers
         /// <returns></returns>
         public ActionResult View17()
         {
-            if (1000 > 100)
+            if (10 > 100)
                 return Redirect("https://www.google.co.in/");
             else
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized, "You are not authorized to access this controller action.");
@@ -272,6 +288,30 @@ namespace MVC_Batch35.Controllers
         public HttpStatusCodeResult UnauthorizedResult()
         {
             return new HttpUnauthorizedResult("You are not authorized to access this controller action.");
+        }
+        /// <summary>
+        /// JavaScript - Age Calculator
+        /// </summary>
+        /// <returns></returns>
+        public JavaScriptResult View18()
+        {
+            var msg = @"function ageCalculator()
+            {
+            var userinput = document.getElementById(""DOB"").value;
+            var dob = new Date(userinput);
+            if (userinput == null || userinput == '') {
+                document.getElementById(""message"").innerHTML = ""**Choose a date please!"";
+                return false;
+            } else {
+                var month_diff = Date.now() - dob.getTime();
+                var age_dt = new Date(month_diff);
+                var year = age_dt.getUTCFullYear();
+                var age = Math.abs(year - 1970);
+                return document.getElementById(""result"").innerHTML =
+                    ""Age is: "" + age + "" years. "";
+            }
+            }";
+            return new JavaScriptResult() { Script = msg };
         }
     }
 }

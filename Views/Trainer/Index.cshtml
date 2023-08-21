@@ -1,0 +1,22 @@
+﻿@model MVC_Batch35.Models.Trainer
+
+@{
+    ViewBag.Title = "Trainer";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<ul>
+    <li>@Model.Id</li>
+    <li>@Model.Name</li>
+    <li>@Model.Skill</li>
+    <li>@Model.Contact</li>
+</ul>
+
+<h1>
+    Hi... This is Trainer Controller - Index View - Using Layout2
+</h1>
+
+@section Info
+{
+<h2> Welcome to Trainer Index View passing info to RenderSection of Layout2</h2>
+}

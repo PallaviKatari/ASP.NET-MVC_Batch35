@@ -1,0 +1,4 @@
+The ActionResult class is a base class of all the above result classes, 
+so it can be the return type of action method that returns any result 
+listed above. However, you can specify the appropriate result class 
+as a return type of action method.
