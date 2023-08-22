@@ -15,26 +15,25 @@ namespace MVC_Batch35
             routes.MapMvcAttributeRoutes();
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            routes.MapRoute(
-                name: "Default", //Route Name
-                url: "{controller}/{action}/{id}", //Route Pattern
-                defaults: new
-                {
-                    controller = "Home", //Controller Name
-                    action = "Index", //Action method Name
-                    id = UrlParameter.Optional //Defaut value for above defined parameter
-                }
-                //constraints: new { id = @"\d+" } //Restriction for id
-            );
+            //routes.MapRoute(
+            //    name: "Default", //Route Name
+            //    url: "{controller}/{action}/{id}", //Route Pattern
+            //    defaults: new
+            //    {
+            //        controller = "Home", //Controller Name
+            //        action = "Index", //Action method Name
+            //        id = UrlParameter.Optional //Defaut value for above defined parameter
+            //    }
+            //);
 
             //routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            //routes.MapRoute(
-            //     "Default", // Route name
-            //     "{controller}/{action}/{id}", // Route Pattern
-            //     new { controller = "Student", action = "Index", id = UrlParameter.Optional }, // Default values for parameters
-            //     new { controller = "^S.*", action = "^Index$" } ,
-            //     constraints: new { id = @"\d+" } //Restriction for controller and action
-            //);
+            routes.MapRoute(
+                 "Default", // Route name
+                 "{controller}/{action}/{id}", // Route Pattern
+                 new { controller = "Student", action = "Index", id = UrlParameter.Optional } // Default values for parameters
+                 //new { controller = "^S.*", action = "^Index$|^Index1$|^View1$" }
+                 //constraints: new { id = @"\d+" } //Restriction for controller and action
+            );
 
         }
     }

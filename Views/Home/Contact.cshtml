@@ -25,6 +25,15 @@
 
         }
     }
+    <hr />
+    <h2>Countries List</h2>
+    @Html.Action("Countries", new { countryData = new List<string>() { "US", "UK", "India" } })
+
+    @*OR THE BELOW USING RenderAction*@
+
+    @*@{
+        Html.RenderAction("Countries", new { countryData = new List<string>() { "US", "UK", "India" } });
+    }*@
 
     <address>
         One Microsoft Way<br />

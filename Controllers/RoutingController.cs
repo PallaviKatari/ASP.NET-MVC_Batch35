@@ -9,7 +9,6 @@ namespace MVC_Batch35.Controllers
 {
     //ROUTE PREFIX
     [RoutePrefix("routes")]
-    [Route("action = GetAllStudents")] //Default Route
     public class RoutingController : Controller
     {
         static IList<Student> students = new List<Student>{
@@ -29,7 +28,7 @@ namespace MVC_Batch35.Controllers
 
         // GET: Routing
         //1. ATTRIBUTE ROUTING
-        [Route("Customer/{id}/details")] //Enable attribute routing in RouteConfig.cs 
+        [Route("~/Customer/{id}/details")] //Enable attribute routing in RouteConfig.cs 
         //https://localhost:44398/routes/Customer/1/details
         public ActionResult Index(int id)
         {
@@ -47,7 +46,7 @@ namespace MVC_Batch35.Controllers
 
         //3. ROUTE PREFIX
         [HttpGet]
-       // [Route] ////https://localhost:44398/routes and renders students details
+        [Route] ////https://localhost:44398/routes and renders students details
         public ActionResult GetAllStudents()
         {
             return View(students);
@@ -55,8 +54,8 @@ namespace MVC_Batch35.Controllers
 
         //4. How to override the route prefix? - Use ~ character to override the route prefix
         //https://localhost:44398/tech/trainers
-        [Route("tech/trainers")] //error
-        //[Route("~/tech/trainers")]
+        //[Route("tech/trainers")] //error
+        [Route("~/tech/trainers")]
         public ActionResult GetTrainers()
         {
             TrainerLayer layer = new TrainerLayer();

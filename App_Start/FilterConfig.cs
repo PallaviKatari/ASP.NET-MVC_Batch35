@@ -8,6 +8,8 @@ namespace MVC_Batch35
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            // MVC Add Exception Filter
+            //filters.Add(new MyExceptionHandler());
         }
     }
 }

@@ -1,0 +1,16 @@
+﻿@model MVC_Batch35.Models.Student
+
+
+<h2> @((TempData["info"] as MVC_Batch35.Models.Student).StudentName)</h2>
+<h2> @((TempData["info"] as MVC_Batch35.Models.Student).Age)</h2>
+<hr />
+@{
+    var sname = "";
+    if (TempData.ContainsKey("info"))
+    {
+        sname = (TempData["info"] as MVC_Batch35.Models.Student).StudentName;
+    }
+}
+<h2>@ViewBag.sid</h2>
+<h2>@sname</h2>
+<hr/>

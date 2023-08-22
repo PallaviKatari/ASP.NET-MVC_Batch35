@@ -16,6 +16,20 @@ namespace MVC_Batch35
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            //Adding Handle Error attribute Globally
+            GlobalFilters.Filters.Add(new HandleErrorAttribute());
         }
     }
+    //public class MyExceptionHandler : HandleErrorAttribute
+    //{
+    //    public override void OnException(ExceptionContext filterContext)
+    //    {
+    //        Exception e = filterContext.Exception;
+    //        filterContext.ExceptionHandled = true;
+    //        filterContext.Result = new ViewResult()
+    //        {
+    //            ViewName = "Error3"
+    //        };
+    //    }
+    //}
 }
