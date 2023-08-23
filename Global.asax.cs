@@ -17,7 +17,7 @@ namespace MVC_Batch35
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             //Adding Handle Error attribute Globally
-            GlobalFilters.Filters.Add(new HandleErrorAttribute());
+            //GlobalFilters.Filters.Add(new HandleErrorAttribute());
         }
     }
     //public class MyExceptionHandler : HandleErrorAttribute
@@ -28,7 +28,7 @@ namespace MVC_Batch35
     //        filterContext.ExceptionHandled = true;
     //        filterContext.Result = new ViewResult()
     //        {
-    //            ViewName = "Error3"
+    //            ViewName = "Error2"
     //        };
     //    }
     //}

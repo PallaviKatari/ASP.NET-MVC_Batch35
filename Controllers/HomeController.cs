@@ -31,12 +31,12 @@ namespace MVC_Batch35.Controllers
         }
 
         //Example 2 - Error1.cshtml
-        [HandleError(ExceptionType = typeof(DivideByZeroException), View = "Error1")]
-        [HandleError] // this will work, go to the default: view = "Error";
+        //[HandleError(ExceptionType = typeof(DivideByZeroException), View = "Error1")]
+        //[HandleError] // this will work, go to the default: view = "Error";
         public ActionResult Index2()
         {
             int a = 1;
-            int b = 0;
+            int b = 10;
             int c = 0;
             c = a / b; //it would cause exception.
             return View();
@@ -46,7 +46,7 @@ namespace MVC_Batch35.Controllers
         public ActionResult Index3()
         {
             int a = 1;
-            int b = 0;
+            int b = 1;
             int c = 0;
             try
             {

@@ -13,5 +13,13 @@ namespace MVC_Batch35.Controllers
         {
             return View();
         }
+        public ActionResult Error500()
+        {
+            return View();
+        }
+        public ActionResult Error404()
+        {
+            return View();
+        }
     }
 }

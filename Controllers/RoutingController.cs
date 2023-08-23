@@ -46,7 +46,7 @@ namespace MVC_Batch35.Controllers
 
         //3. ROUTE PREFIX
         [HttpGet]
-        [Route] ////https://localhost:44398/routes and renders students details
+        [Route("~/")] ////https://localhost:44398/routes and renders students details
         public ActionResult GetAllStudents()
         {
             return View(students);

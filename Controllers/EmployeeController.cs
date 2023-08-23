@@ -76,15 +76,15 @@ namespace MVC_Batch35.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmpID,Name,Gender,City")] Employee employe)
+        public ActionResult Edit([Bind(Include = "EmpID,Name,Gender,City")] Employee employee)
         {
             if (ModelState.IsValid)
             {
-                dbContext.Entry(employe).State = EntityState.Modified;
+                dbContext.Entry(employee).State = EntityState.Modified;
                 dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(employe);
+            return View(employee);
         }
 
         // GET: Employee/Delete/5
