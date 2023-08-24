@@ -75,7 +75,8 @@ namespace MVC_Batch35.Controllers
             return Content(studentDetails.StudentId.ToString());
         }
         [HttpGet]
-        [Route("{studentName:alpha}")] //https://localhost:44398/routes/Harita
+        //[Route("{studentName:alpha}")] //https://localhost:44398/routes/Harita
+        [Route("{studentName:alpha}")]
         public ActionResult GetStudentDetails(string studentName)
         {
             Student studentDetails = students.FirstOrDefault(s => s.StudentName == studentName);

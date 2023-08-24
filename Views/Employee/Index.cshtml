@@ -17,23 +17,65 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EmpID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EmpID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EmpID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.EmpID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.EmpID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.EmpID })
+            </td>
+        </tr>
+    }
 
 </table>
+<hr />
+@{
+    WebGrid webGrid = new WebGrid(source: Model, canSort: true, canPage: true);
+}
+
+<style type="text/css">
+    body {
+        font-family: Arial;
+        font-size: 10pt;
+    }
+
+    .Grid {
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+    }
+
+        .Grid th {
+            background-color: #F7F7F7;
+            font-weight: bold;
+        }
+
+        .Grid th, .Grid td {
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .Grid, .Grid table td {
+            border: 0px solid #ccc;
+        }
+
+            .Grid th a, .Grid th a:visited {
+                color: #333;
+            }
+</style>
+    @webGrid.GetHtml(
+        htmlAttributes: new { @id = "WebGrid", @class = "Grid" },
+        columns: webGrid.Columns(
+                 webGrid.Column("Name", "Name"),
+                 webGrid.Column("Gender", "Gender"),
+                 webGrid.Column("City", "City")))
+
