@@ -25,7 +25,7 @@
                     <li>@Html.ActionLink("Customer", "Create", "Customer", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Product", "Index", "Product", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Trainer", "Index", "Trainer", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Login", "Login", "Home", new { area = "" }, new { @class = "nav-link" })</li>                   
+                    <li>@Html.ActionLink("Login", "Login", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
             </div>
         </div>
@@ -37,9 +37,11 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
+    @RenderSection("scripts", required: false)
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/toastr")
+
 </body>
 </html>

@@ -13,6 +13,7 @@ namespace MVC_Batch35.Controllers
     {
         MVCDBEntities dbContext = new MVCDBEntities();
         // GET: Employee
+        [OutputCache(Duration = 60)]
         public ActionResult Index()
         {
 
